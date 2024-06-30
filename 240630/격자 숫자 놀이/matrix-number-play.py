@@ -10,6 +10,9 @@ from collections import defaultdict
 import heapq
 q=[]
 while True:
+    if len(A)>=r and len(A[r-1])>=c and A[r-1][c-1] == k :
+        print(time)
+        break
     time += 1
     #100이상
     if len(A)>100 or len(A[0])>100 :
@@ -76,10 +79,7 @@ while True:
         #         for _ in range(m-len(A[i])):
         #             A[i].append(0)
 
-
-    if len(A)>=r and len(A[r-1])>=c and A[r-1][c-1] == k :
-        print(time)
-        break
+    
     if time>100:
         print(-1)
         break
