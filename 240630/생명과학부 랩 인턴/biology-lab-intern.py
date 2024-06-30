@@ -33,20 +33,21 @@ def move(a,b,cur_s,cur_d):
             cur_s = cur_s % (2*m-2)
     da = a + cur_s*dx[cur_d]
     db = b + cur_s*dy[cur_d]
-    cnt=-1
+
     while True:
-        cnt += 1
         if da<0 :
             da = -da
+            cur_d = changeD(cur_d)
         elif da>=n:
             da = 2*n-da-2
+            cur_d = changeD(cur_d)
         elif db<0:
             db = -db
+            cur_d = changeD(cur_d)
         elif db>=m :
             db = 2*m-db-2
+            cur_d = changeD(cur_d)
         else:
-            if cnt%2==1 :
-                cur_d = changeD(cur_d)
             break
     return da,db,cur_d
 
