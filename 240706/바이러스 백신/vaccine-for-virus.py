@@ -33,6 +33,8 @@ for hlist in hospital_list:
                 q.append((nx,ny,d+1))
                 if graph[nx][ny] == 0:
                     new_graph[nx][ny] = d+1
+                if graph[nx][ny] == 2:
+                    new_graph[nx][ny] = 0
                 
                 
     flag = True
