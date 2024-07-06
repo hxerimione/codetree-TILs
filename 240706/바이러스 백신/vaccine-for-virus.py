@@ -23,6 +23,7 @@ for hlist in hospital_list:
     for h in hlist :
         a,b = h
         h = a,b,0
+        new_graph[a][b] = 0
         q.append(h)
     while q:
         x,y,d = q.popleft()
@@ -35,8 +36,6 @@ for hlist in hospital_list:
                     new_graph[nx][ny] = d+1
                 if graph[nx][ny] == 2:
                     new_graph[nx][ny] = 0
-                
-                
     flag = True
     maxTime = -1
     for i in range(N):
@@ -53,6 +52,6 @@ if max(answer) == -1:
 else:
     minTime = 2500
     for a in answer :
-        if a>0:
+        if a>=0:
             minTime = min(minTime,a)
     print(minTime)
