@@ -29,7 +29,7 @@ for hlist in hospital_list:
         for k in range(4):
             nx = x + dx[k]
             ny = y + dy[k]
-            if 0<=nx<N and 0<=ny<N and graph[nx][ny] == 0 and new_graph[nx][ny] == -1:
+            if 0<=nx<N and 0<=ny<N and graph[nx][ny] != 1 and new_graph[nx][ny] == -1:
                 q.append((nx,ny,d+1))
                 new_graph[nx][ny] = d+1
     flag = True
