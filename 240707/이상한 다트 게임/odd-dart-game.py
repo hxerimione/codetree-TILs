@@ -23,23 +23,28 @@ def rotate(idx,d,k):
     
 for _ in range(q):
     x,d,k = map(int,input().split())
-    while x<=n:
+    num = x
+    while num<=n:
         #x-1번째 배열 회전
-        rotate(x-1,d,k)
-        x += x
+        rotate(num-1,d,k)
+        num += x
+
     check_graph = [[0]*m for _ in range(n)]
     #인접
     flag = True
     for i in range(n):
-        for j in range(m-1):
+        for j in range(m):
             for r in range(4):
                 ni = i + dx[r]
                 nj = j + dy[r]
-                if 0<=ni<n and circle[i][j] == circle[ni][nj] :
+                if nj>=m:
+                    nj = nj%m
+                if 0<=ni<n and circle[i][j]>0 and circle[i][j] == circle[ni][nj] :
+
                     check_graph[i][j] = 1
                     check_graph[ni][nj] = 1
                     flag = False
-    
+
     if flag:
         total = 0 
         count = 0
@@ -57,13 +62,13 @@ for _ in range(q):
                         circle[i][j] -=1
                     elif circle[i][j] < average:
                         circle[i][j] +=1
+
     else:
         #인접하면 -> 삭제
         for i in range(n):
             for j in range(m):
                 if check_graph[i][j] ==1 :
                     circle[i][j] = 0
-
 answer =0
 for i in range(n):
     answer += sum(circle[i])
