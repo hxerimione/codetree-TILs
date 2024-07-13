@@ -126,15 +126,15 @@ def DFS(x,y,d,num,graph):
 
     graph[x][y] = [-1,-1]
     # 이동
-    copy_graph = copy.deepcopy(move(graph))
+    graph = move(graph)
     # 먹을 수 있는 것
     for k in range(1,4,1):
         nx = x + k * dx[d]
         ny = y + k * dy[d]
-        if 0 <= nx < 4 and 0 <= ny < 4 and copy_graph[nx][ny][0]!=0 :
-            copy_graph[x][y] = [0,0]
-            DFS(nx,ny,copy_graph[nx][ny][1],num,copy_graph)
-            copy_graph[x][y] = [-1,-1]
+        if 0 <= nx < 4 and 0 <= ny < 4 and graph[nx][ny][0]!=0 :
+            graph[x][y] = [0,0]
+            DFS(nx,ny,graph[nx][ny][1],num,copy.deepcopy(graph))
+            graph[x][y] = [-1,-1]
         else:
 
             answer = max(answer,num)
