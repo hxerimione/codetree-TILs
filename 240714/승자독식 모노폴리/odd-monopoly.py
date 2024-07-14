@@ -46,6 +46,7 @@ for T in range(1,1000):
                 continue
             next_x,next_y,next_d= -1,-1,-1
             for d in priority_d[p][d_now]:
+                
                 #아무도 독점계약 안한 칸 찾기
                 nx = i+ dx[d]
                 ny = j+ dy[d]
@@ -63,9 +64,9 @@ for T in range(1,1000):
             # 이동
             move_graph[next_x][next_y].append(p)
             move_graph[i][j] = [0]
-            # 계약 안된 칸이면 계약하기
-            if graph[next_x][next_y][0] == 0:
-                graph[next_x][next_y]=[p,k]
+            # 방향 갱신
+            direction[p] = next_d
+            
     #겹치는 경우 제일 작은 플레이어만 남기기
     for i in range(n):
         for j in range(n):
@@ -77,9 +78,14 @@ for T in range(1,1000):
                     if pi != min_p:
                         live[pi] = 0
                 move_graph[i][j] = [min_p]
+                if graph[i][j][0] ==0 :
+                    graph[i][j] = [move_graph[i][j],k]
+    
     if sum(live) == 1:
         print(T)
         break
-    
+    # print("T",T)
+    # print("g",graph)
+    # print("move",move_graph)
 else:
     print(-1)
