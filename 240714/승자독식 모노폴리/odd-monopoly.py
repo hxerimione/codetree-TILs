@@ -28,14 +28,6 @@ for i in range(1,m+1):
         priority_d[i].append(list(map(int,input().split())))
 
 for T in range(1,1000):
-    #독점 계약기간 줄이기
-    for i in range(n):
-        for j in range(n):
-            if graph[i][j][1] >1:
-                graph[i][j][1]-=1
-            elif graph[i][j][1] ==1:
-                graph[i][j] = [0,0]
-    
     #이동
     for i in range(n):
         for j in range(n):
@@ -46,7 +38,6 @@ for T in range(1,1000):
                 continue
             next_x,next_y,next_d= -1,-1,-1
             for d in priority_d[p][d_now]:
-                
                 #아무도 독점계약 안한 칸 찾기
                 nx = i+ dx[d]
                 ny = j+ dy[d]
@@ -78,9 +69,22 @@ for T in range(1,1000):
                     if pi != min_p:
                         live[pi] = 0
                 move_graph[i][j] = [min_p]
+                
+    #독점 계약기간 줄이기
+    for i in range(n):
+        for j in range(n):
+            if graph[i][j][1] >1:
+                graph[i][j][1]-=1
+            elif graph[i][j][1] ==1:
+                graph[i][j] = [0,0]
+    # 새 계약
+    for i in range(n):
+        for j in range(n):
+            if move_graph[i][j][0]>0:
                 if graph[i][j][0] ==0 :
-                    graph[i][j] = [move_graph[i][j],k]
-    
+                    graph[i][j] = [move_graph[i][j][0],k]
+                elif graph[i][j][0] == move_graph[i][j][0] :
+                    graph[i][j][1] =k
     if sum(live) == 1:
         print(T)
         break
