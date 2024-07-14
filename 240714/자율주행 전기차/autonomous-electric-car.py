@@ -64,4 +64,4 @@ for _ in range(m):
     x_now, y_now, c = location[(x_now,y_now)][0],location[(x_now,y_now)][1],c+location[(x_now,y_now)][2]
     del location[(ax,ay)]
 
-print(c)
+else: print(c)
