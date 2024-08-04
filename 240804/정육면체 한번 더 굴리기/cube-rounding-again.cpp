@@ -101,10 +101,14 @@ void change_dice(int d){
 void move_dice(){
     int nx = sp.x + dx[dir];
     int ny = sp.y + dy[dir];
-    if(!inRange(nx,ny)) dir = (dir+2)%4;
+    if(!inRange(nx,ny)){
+        dir = (dir+2)%4;
+        nx = sp.x + dx[dir];
+        ny = sp.y + dy[dir];
+    }
+    
     change_dice(dir);
     answer += sum_graph[nx][ny];
-    
     if (numbers[2][1] > graph[nx][ny]) dir = (dir + 1)%4;
     else if (numbers[2][1] < graph[nx][ny]) dir = (dir+3)%4;
     sp.x = nx;
